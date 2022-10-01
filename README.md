@@ -37,6 +37,8 @@ data for update--> { "name": "upName", "email": "up@example.com", "password": "u
 
 
 delete localhost/api/users/1
+
+user can have roles - user, moderator, admin
 ________________________________________________________________
 Tasks API
 
@@ -51,10 +53,14 @@ post localhost/api/tasks
 
 put localhost/api/tasks/1
 
-{"title": "upTitle", "description": "upDescription", "status": "upProcessing", "executor": 2 }
+{"title": "upTitle", "description": "upDescription", "status": "processing", "executor": 2 }
 
 delete localhost/api/tasks/1
 
+
+task can have status - new, processing, checking, completed
+
+as executor should be put only an integer, it means id of user
 ____________________________________________________________________
 If we delete user, connected to him tasks will be also removed!!!
 ____________________________________________________________________
