@@ -81,7 +81,9 @@ class UsersController extends Controller
      *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           default="user",
+     *           type="string",
+     *           enum={"user", "moderator", "admin"},
      *      )
      *   ),
      *   @OA\Response(
@@ -186,7 +188,9 @@ class UsersController extends Controller
      *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           default="user",
+     *           type="string",
+     *           enum={"user", "moderator", "admin"},
      *      )
      *   ),
      *   @OA\Response(

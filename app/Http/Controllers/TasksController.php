@@ -72,20 +72,25 @@ class TasksController extends Controller
      *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           default="new",
+     *           type="string",
+     *           enum={"new", "processing", "checking", "completed"},
      *      )
      *   ),
      *     @OA\Parameter(
      *      name="executor",
+     *      description="id of user",
      *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           default = 1,
+     *           type="integer",
+     *           enum={1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
      *      )
      *   ),
      *   @OA\Response(
      *     response=201,
-     *     description="Success",
+     *     description="Task is successfuly created",
      *     @OA\JsonContent(
      *        type="object", ref="#/components/schemas/Task",
      *     )
@@ -177,15 +182,20 @@ class TasksController extends Controller
      *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="string"
+     *           default="new",
+     *           type="string",
+     *           enum={"new", "processing", "checking", "completed"},
      *      )
      *   ),
-     *   @OA\Parameter(
+     *     @OA\Parameter(
      *      name="executor",
+     *      description="id of user",
      *      in="query",
      *      required=true,
      *      @OA\Schema(
-     *           type="integer"
+     *           default = 1,
+     *           type="integer",
+     *           enum={1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
      *      )
      *   ),
      *   @OA\Response(

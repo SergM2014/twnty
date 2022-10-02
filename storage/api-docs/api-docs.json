@@ -124,21 +124,42 @@
                         "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "default": "new",
+                            "enum": [
+                                "new",
+                                "processing",
+                                "checking",
+                                "completed"
+                            ]
                         }
                     },
                     {
                         "name": "executor",
                         "in": "query",
+                        "description": "id of user",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "integer",
+                            "default": 1,
+                            "enum": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6,
+                                7,
+                                8,
+                                9,
+                                10
+                            ]
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "Success",
+                        "description": "Task is successfuly created",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -251,15 +272,36 @@
                         "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "default": "new",
+                            "enum": [
+                                "new",
+                                "processing",
+                                "checking",
+                                "completed"
+                            ]
                         }
                     },
                     {
                         "name": "executor",
                         "in": "query",
+                        "description": "id of user",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "integer",
+                            "default": 1,
+                            "enum": [
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6,
+                                7,
+                                8,
+                                9,
+                                10
+                            ]
                         }
                     }
                 ],
@@ -356,7 +398,13 @@
                         "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "default": "user",
+                            "enum": [
+                                "user",
+                                "moderator",
+                                "admin"
+                            ]
                         }
                     }
                 ],
@@ -483,7 +531,13 @@
                         "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "default": "user",
+                            "enum": [
+                                "user",
+                                "moderator",
+                                "admin"
+                            ]
                         }
                     }
                 ],
