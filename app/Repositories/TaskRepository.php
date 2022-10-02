@@ -21,6 +21,7 @@ class TaskRepository implements TaskRepositoryInterface
     public function deleteTask(int $id): bool
     {
         $task = Task::findOrFail($id);
+
         return  $task->delete();
     }
 

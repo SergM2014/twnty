@@ -46,10 +46,8 @@ class UsersController extends Controller
 
     public function destroy($id): JsonResponse
     {
-        $deleted = $this->userRepository->deleteUser($id);
+         $this->userRepository->deleteUser($id);
 
-        if($deleted) return $this->respondNoContent();
-
-        return $this->respondError('It is impossible to delete the user');
+         return $this->respondNoContent();
     }
 }

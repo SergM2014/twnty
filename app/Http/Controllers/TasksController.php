@@ -46,10 +46,8 @@ class TasksController extends Controller
 
     public function destroy($id): JsonResponse
     {
-        $deleted = $this->taskRepository->deleteTask($id);
+        $this->taskRepository->deleteTask($id);
 
-        if($deleted) return $this->respondNoContent();
-
-        return $this->respondError('It is impossible to delete the Task');
+        return $this->respondNoContent();
     }
 }
