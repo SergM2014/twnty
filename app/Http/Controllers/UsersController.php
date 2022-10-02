@@ -208,7 +208,7 @@ class UsersController extends Controller
      *         description="not found user error",
      *     )
      * )
-      */
+     */
     public function update(UserRequest $request, $id): JsonResponse
     {
         $validated = $request->validated();
