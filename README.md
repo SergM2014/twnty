@@ -83,7 +83,7 @@ Any presence/absence or order/variations of filters in query string is possible.
 
 _______________________________________________________________________
 ________________________________________________________________________
- swagger documentation is added. to see swagger UI visit->
+ swagger documentation is added partially. to see swagger UI visit->
 
  
 http://localhost/api/documentation
