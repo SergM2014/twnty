@@ -86,4 +86,4 @@ ________________________________________________________________________
  swagger documentation is added. to see swagger UI visit->
 
  
-http::/localhost/api/documentation
+http:/localhost/api/documentation
