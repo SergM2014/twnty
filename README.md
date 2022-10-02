@@ -1,13 +1,14 @@
 This application is based upon Laravel Sail Package
 
-steps how to install:
+follow instruction for installation
 
 1) git clone https://github.com/SergM2014/twnty.git
 2) cd twnty
-3) ./vendor/bin/sail up -d
-4) ./vendor/bin/sail shell
-5) composer install
-6) php artisan migrate --seed
+3) ./vendor/bin/sail build --no-cache
+4) ./vendor/bin/sail up -d
+5) ./vendor/bin/sail shell
+6) composer install
+7) php artisan migrate --seed
 _________________________________________
 to check if the application is successfully installed visit http://localhost
 
