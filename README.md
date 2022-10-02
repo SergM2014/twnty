@@ -80,3 +80,10 @@ get localhost/api/search?status=new&executor=Doctor
 executer is written like Doctor.
 
 Any presence/absence or order/variations of filters in query string is possible.
+
+_______________________________________________________________________
+________________________________________________________________________
+ swagger documentation is added. to see swagger UI visit->
+
+ 
+http::/localhost/api/documentation

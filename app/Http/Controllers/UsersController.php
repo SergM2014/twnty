@@ -15,6 +15,30 @@ class UsersController extends Controller
 
     public function __construct(private readonly UserRepositoryInterface $userRepository) {}
 
+    /**
+     * @OA\Get(
+     *   path="/api/users",
+     *   summary="list users",
+     *   operationId="listUsers",
+     *   tags={"users"},
+     *   @OA\Response(
+     *      response=200,
+     *      description="successful operation",
+     *      @OA\JsonContent(
+     *          type="array",
+     *          @OA\Items(ref="#/components/schemas/User")
+     *      ),
+     *      @OA\XmlContent(
+     *          type="array",
+     *          @OA\Items(ref="#/components/schemas/User")
+     *      )
+     *     ),
+     *   @OA\Response(
+     *     response="500",
+     *     description="unexpected error"
+     *   )
+     * )
+     */
     public function index(): JsonResponse
     {
         $users = $this->userRepository->getAllUsers();
@@ -22,6 +46,61 @@ class UsersController extends Controller
         return $this->respondWithSuccess(new UserCollection($users));
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/users",
+     *     summary="Create a user",
+     *     operationId="createUser",
+     *     tags={"users"},
+     *  @OA\Parameter(
+     *      name="name",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *  @OA\Parameter(
+     *      name="email",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="password",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *     @OA\Parameter(
+     *      name="role",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *     response=201,
+     *     description="Success",
+     *     @OA\JsonContent(
+     *        type="object", ref="#/components/schemas/User",
+     *     )
+     *  ),
+     *     @OA\Response(
+     *       response=422,
+     *       description="uprocessable content"
+     *   ),
+     *     @OA\Response(
+     *         response="500",
+     *         description="unexpected error"
+     *     )
+     * )
+     */
     public function store(UserRequest $request): JsonResponse
     {
         $validated = $request->validated();
@@ -30,6 +109,35 @@ class UsersController extends Controller
         return $this->respondCreated(new UserResource($user));
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/users/{id}",
+     *     description="Returns a user based on a single ID",
+     *     operationId="findUserById",
+     *     summary="Get a user",
+     *     tags={"users"},
+     *     @OA\Parameter(
+     *         description="ID of user to fetch",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *     ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="show user",
+     *     @OA\JsonContent(
+     *        type="object", ref="#/components/schemas/User"),
+     *  ),
+     *     @OA\Response(
+     *         response="500",
+     *         description="unexpected error",
+     *     ),
+     *      @OA\Response(
+     *         response="404",
+     *         description="not found user error",
+     *     )
+     * )
+     */
     public function show($id): JsonResponse
     {
         $user = $this->userRepository->getUserById($id);
@@ -37,6 +145,70 @@ class UsersController extends Controller
         return $this->respondWithSuccess(new UserResource($user));
     }
 
+    /**
+     * @OA\Put(
+     *     path="/api/users/{userId}",
+     *     summary="Update a user",
+     *     operationId="updateUser",
+     *     tags={"users"},
+     *     @OA\Parameter(
+     *         description="ID of user to update",
+     *         in="path",
+     *         name="userId",
+     *         required=true,
+     *     ),
+     *  @OA\Parameter(
+     *      name="name",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *  @OA\Parameter(
+     *      name="email",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="password",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Parameter(
+     *      name="role",
+     *      in="query",
+     *      required=true,
+     *      @OA\Schema(
+     *           type="string"
+     *      )
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="Post updated",
+     *     @OA\JsonContent(
+     *        type="object", ref="#/components/schemas/User"),
+     *  ),
+     *   @OA\Response(
+     *       response=422,
+     *       description="uprocessable content"
+     *   ),
+     *     @OA\Response(
+     *         response="500",
+     *         description="unexpected error"
+     *     ),
+     *     @OA\Response(
+     *         response="404",
+     *         description="not found user error",
+     *     )
+     * )
+      */
     public function update(UserRequest $request, $id): JsonResponse
     {
         $validated = $request->validated();
@@ -44,6 +216,29 @@ class UsersController extends Controller
         return $this->respondWithSuccess($this->userRepository->updateUser($id, $validated));
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/api/users/{id}",
+     *     description="deletes a single user based on the ID supplied",
+     *     operationId="deleteUser",
+     *     summary="Delete a User",
+     *     tags={"users"},
+     *     @OA\Parameter(
+     *         description="ID of user to delete",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=204,
+     *         description="user deleted"
+     *     ),
+     *     @OA\Response(
+     *         response="500",
+     *         description="unexpected error"
+     *     )
+     * )
+     */
     public function destroy($id): JsonResponse
     {
          $this->userRepository->deleteUser($id);
