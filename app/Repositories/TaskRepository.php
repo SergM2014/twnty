@@ -60,11 +60,11 @@ class TaskRepository implements TaskRepositoryInterface
                 $tasks = Task::all();
             }
         if($executor) {
-            $executorNameTasks = $tasks->filter(fn ($task) =>
-                $task->user()->where('name', 'like', '%'.$executor.'%')->first()
+            $filteredNamesTasks = $tasks->filter(fn ($task) =>
+                $task->user()->where('name', 'like', "%{$executor}%")->first()
             );
         }
 
-        return $executorNamesTasks ??= $tasks;
+        return $filteredNamesTasks ??= $tasks;
     }
 }
